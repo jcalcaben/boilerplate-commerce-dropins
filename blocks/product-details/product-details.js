@@ -63,6 +63,12 @@ export default async function decorate(block) {
           },
         }));
       },
+      Quantity: (ctx) => {
+        const label = document.createElement('div');
+        label.classList.add('pdp-quantity-label');
+        label.innerText = 'Quantity';
+        ctx.prependChild(label);
+      },
     },
   })(block);
 }
