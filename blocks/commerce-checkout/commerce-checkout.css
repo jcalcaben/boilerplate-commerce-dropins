@@ -5,3 +5,48 @@ header .nav-sections,
 header .nav-tools {
   display: none !important;
 }
+
+.checkout__root {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  gap: var(--spacing-medium);
+}
+
+.checkout__left-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}
+
+.checkout__right-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}
+
+@media screen and (max-width: 768px) {
+  .checkout__root {
+    flex-direction: column;
+    align-items: center;
+  }
+  .checkout__left-column,
+  .checkout__right-column {
+    gap: var(--spacing-small);
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .checkout__root {
+    flex-direction: column;
+    align-items: center;
+  }
+  .checkout__left-column,
+  .checkout__right-column {
+    gap: var(--spacing-small);
+    width: 100%;
+  }
+  
+}

@@ -170,7 +170,13 @@ async function loadRecommendation(block, context) {
   });
 
   recommendationsPromise = performCatalogServiceQuery(recommendationsQuery, context);
-  const { recommendations } = await recommendationsPromise;
+  const recommendationsResult = await recommendationsPromise;
+
+  if (!recommendationsResult) {
+    return;
+  }
+
+  const { recommendations } = recommendationsResult;
 
   window.adobeDataLayer.push((dl) => {
     dl.push({ recommendationsContext: { units: recommendations.results.map(mapUnit) } });
@@ -186,6 +192,7 @@ export default async function decorate(block) {
   const context = {};
 
   function handleProductChanges({ productContext }) {
+    if(!productContext) return;
     context.currentSku = productContext.sku;
     loadRecommendation(block, context);
   }
