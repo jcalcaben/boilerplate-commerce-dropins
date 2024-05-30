@@ -15,16 +15,12 @@ import { render as cartProvider } from '@dropins/storefront-cart/render.js';
 // Drop-in Containers
 import ShippingForm from '@dropins/storefront-checkout/containers/ShippingForm.js';
 import ShippingMethods from '@dropins/storefront-checkout/containers/ShippingMethods.js';
-import CheckoutOrderSummary from '@dropins/storefront-checkout/containers/OrderSummary.js';
+/* import CheckoutOrderSummary from '@dropins/storefront-checkout/containers/OrderSummary.js'; */
 
 import CartOrderSummary from '@dropins/storefront-cart/containers/OrderSummary.js';
 import CartItemsList from '@dropins/storefront-cart/containers/CartItemsList.js';
 
 export default async function decorate(block) {
-  // If cartId is cached in session storage, use
-  // otherwise, checkout drop-in will look for one in the event-bus
-  const cartId = sessionStorage.getItem('DROPINS_CART_ID') || '';
-
   // Initialize Drop-ins
   initializers.register(checkout.initialize, {});
 
@@ -36,11 +32,7 @@ export default async function decorate(block) {
 
   events.on('cart/data', (data) => {
     const { id: cartId } = data;
-
-    checkout.getCheckoutData(cartId).then((checkoutData) => {
-      console.log('checkoutData', checkoutData);
-    });
-
+    checkout.getCheckoutData(cartId);
   }, { eager: true });
 
   const checkoutContainer = document.createElement('div');
@@ -73,7 +65,7 @@ export default async function decorate(block) {
 
   leftColumn.append(shippingFormContainer);
   leftColumn.append(shippingMethodsContainer);
-/*   rightColumn.append(checkoutOrderSummaryContainer); */
+  /*   rightColumn.append(checkoutOrderSummaryContainer); */
   rightColumn.append(cartOrderSummaryContainer);
   rightColumn.append(cartItemsListContainer);
 
@@ -82,10 +74,10 @@ export default async function decorate(block) {
 
   provider.render(ShippingForm, {})(shippingFormContainer);
   provider.render(ShippingMethods, {})(shippingMethodsContainer);
-/*   provider.render(CheckoutOrderSummary, {})(checkoutOrderSummaryContainer); */
+  /*   provider.render(CheckoutOrderSummary, {})(checkoutOrderSummaryContainer); */
 
   cartProvider.render(CartOrderSummary, {
-    allowEstimateShipping: false
+    allowEstimateShipping: false,
   })(cartOrderSummaryContainer);
   cartProvider.render(CartItemsList, {})(cartItemsListContainer);
 

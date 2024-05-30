@@ -192,7 +192,7 @@ export default async function decorate(block) {
   const context = {};
 
   function handleProductChanges({ productContext }) {
-    if(!productContext) return;
+    if (!productContext) return;
     context.currentSku = productContext.sku;
     loadRecommendation(block, context);
   }
