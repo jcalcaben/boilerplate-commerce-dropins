@@ -1,14 +1,14 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/no-extraneous-dependencies */
 
-// Drop-in Tools
+// Dropin Tools
 import { initializers } from '@dropins/tools/initializer.js';
 import { events } from '@dropins/tools/event-bus.js';
 
-// Drop-in APIs
+// Dropin APIs
 import * as checkout from '@dropins/storefront-checkout/api.js';
 
-// Drop-in Providers
+// Dropin Providers
 import { render as provider } from '@dropins/storefront-checkout/render.js';
 import { render as cartProvider } from '@dropins/storefront-cart/render.js';
 
