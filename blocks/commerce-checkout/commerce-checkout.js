@@ -36,14 +36,14 @@ export default async function decorate(block) {
   }, { eager: true });
 
   const checkoutContainer = document.createElement('div');
-  checkoutContainer.classList.add('checkout__root');
+  checkoutContainer.classList.add('checkout-root');
   checkoutContainer.id = 'checkout-container';
 
   const leftColumn = document.createElement('div');
-  leftColumn.classList.add('checkout__left-column');
+  leftColumn.classList.add('checkout-left-column');
 
   const rightColumn = document.createElement('div');
-  rightColumn.classList.add('checkout__right-column');
+  rightColumn.classList.add('checkout-right-column');
 
   const shippingFormContainer = document.createElement('div');
   shippingFormContainer.id = 'shipping-form-container';
